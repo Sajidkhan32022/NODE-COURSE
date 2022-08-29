@@ -11,13 +11,19 @@ const readCommand = {
             describe : 'notes tilte',
             demandOption : true,
             type : 'string'
-        }
+        },
+        body : {
+            describe : 'body',
+            demandOption : true,
+            type : 'string'
+        },
     },
     handler: (argv)=>{
-        console.log('add notes in the file',argv)
+        console.log('title',argv.title)
     }
 }
 
 yargs.command(readCommand)
-console.log(yargs.argv)
+//console.log(yargs.argv)
+// yargs.parse()
 
