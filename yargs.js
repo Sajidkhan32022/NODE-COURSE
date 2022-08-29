@@ -20,10 +20,12 @@ const readCommand = {
     },
     handler: (argv)=>{
         console.log('title',argv.title)
+        console.log('body',argv.body)
+
     }
 }
 
 yargs.command(readCommand)
 //console.log(yargs.argv)
-// yargs.parse()
+yargs.parse()
 
