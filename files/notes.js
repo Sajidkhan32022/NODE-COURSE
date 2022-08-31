@@ -5,12 +5,13 @@ const getNotes = function(){
     return loadNotes()
 };
 
-const addNote = function (title, body) {
+const addNote =  (title, body) => {
     const notes = loadNotes()
     //console.log(notes)
-    const duplicateNotes = notes.filter(function (note) {
+    /*const duplicateNotes = notes.filter(function (note) {
         return note.title === title
-    })
+    })*/
+    const duplicateNotes = notes.filter((note) => note.title === title)
 
     if (duplicateNotes.length === 0) {
         notes.push({
@@ -24,11 +25,12 @@ const addNote = function (title, body) {
     }
 }
 
-const removeNotes = function(title){
+const removeNotes = (title) =>{
     const notes = loadNotes()
-    const notesToKeep = notes.filter(function (note) {
+    /*const notesToKeep = notes.filter(function (note) {
         return note.title !== title
-    })
+    })*/
+    const notesToKeep = notes.filter((note) => note.title !== title)
     if(notes.length > notesToKeep.length){
         console.log(chalk.white('notes remove'))
     }else{
@@ -36,13 +38,13 @@ const removeNotes = function(title){
     }
     return saveNotes(notesToKeep)
 }
-const saveNotes = function(notes){
+const saveNotes = (notes)=>{
     let notesData = JSON.stringify(notes)
     let writeData = fs.writeFileSync('./notes.json',notesData)
     return writeData
 }
 
-const loadNotes = function(){
+const loadNotes = () =>{
     try{
         let dataBuffer = fs.readFileSync('./notes.json')
         let dataJSON = dataBuffer.toString()
