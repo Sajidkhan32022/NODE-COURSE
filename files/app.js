@@ -3,7 +3,7 @@ const notes = require('./notes.js')
 
 yargs.version('1.0.0')
 //add command
-const readCommand = {
+const addCommand = {
     command : 'add',
     describe : 'add notes',
     builder : {
@@ -22,7 +22,7 @@ const readCommand = {
         notes.addNote(argv.title,argv.body)
     }
 }
-yargs.command(readCommand)
+yargs.command(addCommand)
 
 // remove commond 
 const rmoveCommand = {
@@ -46,7 +46,7 @@ const rmoveCommand = {
 }
 yargs.command(rmoveCommand)
 
-// list /read commond 
+// list commond 
 const listCommand = {
     command : 'list',
     describe : 'list notes',
@@ -67,6 +67,28 @@ const listCommand = {
     }
 }
 yargs.command(listCommand)
+
+//read command
+const readCommand = {
+    command : 'list',
+    describe : 'list notes',
+    builder : {
+        title : {
+            describe : 'notes lists',
+            demandOption : true,
+            type : 'string'
+        },
+        body : {
+            describe : 'body',
+            demandOption : false,
+            type : 'string'
+        },
+    },
+    handler: (argv)=>{
+        notes.readNotes(argv.title)
+    }
+}
+yargs.command(readCommand)
 
 yargs.parse() //console.log(yargs.argv)
 
